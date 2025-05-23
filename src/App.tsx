@@ -1,8 +1,26 @@
+import { useState } from 'react';
 import Header from './Header';
 import { MintNFT } from './MintNFT';
 import NFTImage from './NFTImage';
+import SurveyModal from './SurveyModal';
 
 function App() {
+  const [isSurveyOpen, setSurveyOpen] = useState(false);
+  const [surveyConfirmed, setSurveyConfirmed] = useState(false);
+
+  const handleOpenSurvey = () => {
+    setSurveyOpen(true);
+  };
+
+  const handleSurveyConfirmed = () => {
+    setSurveyOpen(false);
+    setSurveyConfirmed(true); // pokazuje przycisk Confirm Mint
+  };
+
+  const handleSurveyClosed = () => {
+    setSurveyOpen(false);
+  };
+
   return (
     <>
       <Header />
@@ -27,7 +45,7 @@ function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            maxWidth: '360px',
+            maxWidth: '400px',
             width: '100%',
             marginTop: '2rem',
           }}
@@ -35,10 +53,20 @@ function App() {
           <h1 style={{ fontSize: '1.8rem', marginBottom: '1.5rem' }}>🎉 Mint your NFT</h1>
           <NFTImage tokenId={1} />
           <div style={{ marginTop: '2rem' }}>
-            <MintNFT />
+            <MintNFT
+              onBeforeMint={handleOpenSurvey}
+              showFinalMintButton={surveyConfirmed}
+            />
           </div>
         </div>
       </main>
+
+      {isSurveyOpen && (
+        <SurveyModal
+          onClose={handleSurveyClosed}
+          onMintConfirmed={handleSurveyConfirmed}
+        />
+      )}
     </>
   );
 }
