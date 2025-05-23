@@ -3,18 +3,39 @@ import Header from './Header';
 import { MintNFT } from './MintNFT';
 import NFTImage from './NFTImage';
 import SurveyModal from './SurveyModal';
+import { usePublicClient, useAccount } from 'wagmi';
+import { ethers } from 'ethers';
+import abi from './abi.json'; // ABI twojego kontraktu
+const contractAddress = '0x8CAec4dC4fe4698A6a249fe5Baf62832880aE22C';
 
 function App() {
   const [isSurveyOpen, setSurveyOpen] = useState(false);
   const [surveyConfirmed, setSurveyConfirmed] = useState(false);
+  const { address } = useAccount();
+  const publicClient = usePublicClient();
 
-  const handleOpenSurvey = () => {
-    setSurveyOpen(true);
+  const handleOpenSurvey = async () => {
+    if (!address || !publicClient) return;
+
+    const provider = new ethers.JsonRpcProvider(publicClient.transport.url);
+    const contract = new ethers.Contract(contractAddress, abi, provider);
+
+    try {
+      const balance = await contract.balanceOf(address);
+      if (BigInt(balance) > 0n) {
+        alert("You have already minted this NFT.");
+        return;
+      }
+      setSurveyOpen(true);
+    } catch (err) {
+      console.error('❌ Error checking balance:', err);
+    }
   };
+
 
   const handleSurveyConfirmed = () => {
     setSurveyOpen(false);
-    setSurveyConfirmed(true); // pokazuje przycisk Confirm Mint
+    setSurveyConfirmed(true);
   };
 
   const handleSurveyClosed = () => {
