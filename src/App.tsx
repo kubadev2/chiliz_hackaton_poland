@@ -1,11 +1,16 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Header from './Header';
 
 function App() {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>RainbowKit + Vite + TypeScript</h1>
-      <ConnectButton />
-    </div>
+    <>
+      <div style={{ paddingTop: '80px' }}>
+        <Header />
+        <div style={{ padding: '2rem', color: 'white' }}>
+          <h1>Zawartość</h1>
+        </div>
+      </div>
+
+    </>
   );
 }
 
