@@ -22,7 +22,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { chilizSpicy } from './chains/chilizSpicy';
 
 const config = getDefaultConfig({
-  appName: 'chilizz test',
+  appName: 'chiliz x pow',
   projectId: '6326102dcaf8e4badf10cfdf1c78af60',
   chains: [chilizSpicy],
   ssr: false,
