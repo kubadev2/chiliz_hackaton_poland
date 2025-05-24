@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import YourNFTs from './YourNFTs.tsx';
 import Leaderboard from './Leaderboard.tsx';
+import NFTDetail from './NFTDetail.tsx';
+import Rewards from './Rewards.tsx';
+import SpecialCards from './SpecialCards.tsx';
 import './index.css';
 
 import '@rainbow-me/rainbowkit/styles.css';
@@ -37,6 +40,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path="/" element={<App />} />
               <Route path="/your-nfts" element={<YourNFTs />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/nft/:contract/:tokenId" element={<NFTDetail />} />
+              <Route path="/Rewards" element={<Rewards />} />
+              <Route path="/special-cards" element={<SpecialCards />} />
             </Routes>
           </BrowserRouter>
         </RainbowKitProvider>

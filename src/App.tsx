@@ -21,16 +21,17 @@ function App() {
     const contract = new ethers.Contract(contractAddress, abi, provider);
 
     try {
-      const balance = await contract.balanceOf(address);
-      if (BigInt(balance) > 0n) {
+      const hasMinted = await contract.hasMinted(address);
+      if (hasMinted) {
         alert("You have already minted this NFT.");
         return;
       }
       setSurveyOpen(true);
     } catch (err) {
-      console.error('❌ Error checking balance:', err);
+      console.error('❌ Error checking mint status:', err);
     }
   };
+
 
 
   const handleSurveyConfirmed = () => {

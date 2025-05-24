@@ -16,10 +16,12 @@ export default function Header() {
             </Link>
 
             <nav className="desktop-menu" style={styles.desktopMenu}>
-              <Link to="/your-nfts" style={styles.link}>🎨 Your NFTs</Link>
+              <Link to="/your-nfts" style={styles.link}>Your NFTs</Link>
               <Link to="/leaderboard" style={styles.link}>🏅 Leaderboard</Link>
-              <span style={styles.disabled}>🏆 Rewards (soon)</span>
-              <span style={styles.disabled}>🎁 Airdrop (soon)</span>
+              <Link to="/special-cards" style={styles.link}>Special Cards</Link>
+
+              <Link to="/rewards" style={styles.link}>🎁 Rewards</Link>
+              <span style={styles.disabled}>Airdrop (soon)</span>
             </nav>
 
           </div>
@@ -49,10 +51,11 @@ export default function Header() {
 
         {menuOpen && (
           <nav className="mobile-menu" style={styles.mobileMenu}>
-            <Link to="/your-nfts" style={styles.link}>🎨 Your NFTs</Link>
+            <Link to="/your-nfts" style={styles.link}>Your NFTs</Link>
             <Link to="/leaderboard" style={styles.link}>🏅 Leaderboard</Link>
-            <span style={styles.disabled}>🏆 Rewards (soon)</span>
-            <span style={styles.disabled}>🎁 Airdrop (soon)</span>
+            <Link to="/special-cards" style={styles.link}>Special Cards</Link>
+            <Link to="/rewards" style={styles.link}>🎁 Rewards</Link>
+            <span style={styles.disabled}>Airdrop (soon)</span>
           </nav>
         )}
       </div>

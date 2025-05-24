@@ -3,11 +3,9 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import abi from './abi.json';
 import Header from './Header';
+import { nftContracts } from './nftContracts';
 
-const nftContracts = [
-  '0x8CAec4dC4fe4698A6a249fe5Baf62832880aE22C',
-  // Możesz dodać kolejne adresy NFT
-];
+
 
 export default function Leaderboard() {
   const { address: userAddress } = useAccount();

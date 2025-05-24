@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import abi from './abi.json';
 import Header from './Header';
-
-const nftContracts = [
-    '0x8CAec4dC4fe4698A6a249fe5Baf62832880aE22C', // Możesz tu dodawać więcej kontraktów
-];
+import { Link } from 'react-router-dom';
+import { nftContracts } from './nftContracts';
 
 export default function YourNFTs() {
     const { address, isConnected } = useAccount();
@@ -76,20 +74,25 @@ export default function YourNFTs() {
                         <p style={{ textAlign: 'center', color: '#aaa' }}>You don't own any NFTs yet.</p>
                     ) : (
                         nfts.map(({ tokenId, image, name, contract }) => (
-                            <div
+                            <Link
+                                to={`/nft/${contract}/${tokenId}`}
                                 key={`${contract}-${tokenId}`}
-                                style={{
-                                    background: '#222',
-                                    padding: '1rem',
-                                    borderRadius: '1rem',
-                                    width: 220,
-                                    textAlign: 'center',
-                                }}
+                                style={{ textDecoration: 'none', color: 'inherit' }}
                             >
-                                <img src={image} alt={`NFT ${tokenId}`} style={{ width: '100%', borderRadius: '0.5rem' }} />
-                                <p style={{ marginTop: '0.5rem', fontWeight: 'bold', color: '#fff' }}>{name}</p>
-                                <p style={{ fontSize: '0.9rem', color: '#aaa' }}>Token #{tokenId}</p>
-                            </div>
+                                <div
+                                    style={{
+                                        background: '#222',
+                                        padding: '1rem',
+                                        borderRadius: '1rem',
+                                        width: 220,
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    <img src={image} alt={`NFT ${tokenId}`} style={{ width: '100%', borderRadius: '0.5rem' }} />
+                                    <p style={{ marginTop: '0.5rem', fontWeight: 'bold', color: '#fff' }}>{name}</p>
+                                    <p style={{ fontSize: '0.9rem', color: '#aaa' }}>Token #{tokenId}</p>
+                                </div>
+                            </Link>
                         ))
                     )}
                 </div>
