@@ -140,11 +140,20 @@ export default function Rewards() {
                     color: 'white',
                     minHeight: '100vh',
                     display: 'flex',
-                    justifyContent: 'center',
-                    width: '100vw',
+                    flexDirection: 'column', // <--- ważne
                     alignItems: 'center',
+                    width: '100vw',
                 }}
             >
+                {/* 🔽 Nagłówek */}
+                <section style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                    <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🏅 Claim Your Reward</h1>
+                    <p style={{ color: '#aaa', fontSize: '1rem' }}>
+                        Earn special medals based on your NFT collection. Thank you for being part of the journey!
+                    </p>
+                </section>
+
+                {/* 🔽 Sekcja z medalami */}
                 <div
                     style={{
                         display: 'flex',

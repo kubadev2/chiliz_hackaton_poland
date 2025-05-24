@@ -85,13 +85,40 @@ export default function YourNFTs() {
                                         padding: '1rem',
                                         borderRadius: '1rem',
                                         width: 220,
+                                        height: 320, // <-- Stała wysokość kafelka
                                         textAlign: 'center',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'space-between',
                                     }}
                                 >
-                                    <img src={image} alt={`NFT ${tokenId}`} style={{ width: '100%', borderRadius: '0.5rem' }} />
-                                    <p style={{ marginTop: '0.5rem', fontWeight: 'bold', color: '#fff' }}>{name}</p>
-                                    <p style={{ fontSize: '0.9rem', color: '#aaa' }}>Token #{tokenId}</p>
+                                    <img
+                                        src={image}
+                                        alt={`NFT ${tokenId}`}
+                                        style={{
+                                            width: '100%',
+                                            height: 180, // <-- Stała wysokość obrazka
+                                            objectFit: 'cover',
+                                            borderRadius: '0.5rem',
+                                        }}
+                                    />
+                                    <div style={{ marginTop: '0.5rem' }}>
+                                        <p
+                                            style={{
+                                                fontWeight: 'bold',
+                                                color: '#fff',
+                                                margin: 0,
+                                                overflow: 'hidden',
+                                                whiteSpace: 'nowrap',
+                                                textOverflow: 'ellipsis',
+                                            }}
+                                        >
+                                            {name}
+                                        </p>
+                                        <p style={{ fontSize: '0.9rem', color: '#aaa', margin: 0 }}>Token #{tokenId}</p>
+                                    </div>
                                 </div>
+
                             </Link>
                         ))
                     )}

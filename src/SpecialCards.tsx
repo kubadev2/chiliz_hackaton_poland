@@ -182,6 +182,7 @@ export default function SpecialCards() {
                             {minted ? '✅ Minted!' : isMinting ? 'Minting...' : canMint ? 'Mint Card' : 'Not eligible'}
                         </button>
                     </div>
+                    <h3>You need at least 10 $PSG tokens to mint.</h3>
                 </div>
             </main>
         </>

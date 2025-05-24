@@ -5,6 +5,17 @@ import logo from './assets/logo.png';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  const getLinkStyle = (path: string): React.CSSProperties => ({
+    color: hovered === path ? 'gray' : '#fff',
+    textDecoration: 'none',
+    fontWeight: 500,
+    fontSize: '1rem',
+    whiteSpace: 'nowrap',
+    transition: 'color 0.2s',
+    cursor: 'pointer',
+  });
 
   return (
     <header style={styles.header}>
@@ -16,14 +27,24 @@ export default function Header() {
             </Link>
 
             <nav className="desktop-menu" style={styles.desktopMenu}>
-              <Link to="/your-nfts" style={styles.link}>Your NFTs</Link>
-              <Link to="/leaderboard" style={styles.link}>🏅 Leaderboard</Link>
-              <Link to="/special-cards" style={styles.link}>Special Cards</Link>
-
-              <Link to="/rewards" style={styles.link}>🎁 Rewards</Link>
+              {[
+                { path: '/your-nfts', label: 'Your NFTs' },
+                { path: '/leaderboard', label: 'Leaderboard' },
+                { path: '/special-cards', label: 'Special Cards' },
+                { path: '/rewards', label: '🎁 Rewards' },
+              ].map(({ path, label }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  style={getLinkStyle(path)}
+                  onMouseEnter={() => setHovered(path)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  {label}
+                </Link>
+              ))}
               <span style={styles.disabled}>Airdrop (soon)</span>
             </nav>
-
           </div>
 
           <div style={styles.rightSide}>
@@ -51,10 +72,22 @@ export default function Header() {
 
         {menuOpen && (
           <nav className="mobile-menu" style={styles.mobileMenu}>
-            <Link to="/your-nfts" style={styles.link}>Your NFTs</Link>
-            <Link to="/leaderboard" style={styles.link}>🏅 Leaderboard</Link>
-            <Link to="/special-cards" style={styles.link}>Special Cards</Link>
-            <Link to="/rewards" style={styles.link}>🎁 Rewards</Link>
+            {[
+              { path: '/your-nfts', label: 'Your NFTs' },
+              { path: '/leaderboard', label: 'Leaderboard' },
+              { path: '/special-cards', label: 'Special Cards' },
+              { path: '/rewards', label: '🎁 Rewards' },
+            ].map(({ path, label }) => (
+              <Link
+                key={path}
+                to={path}
+                style={getLinkStyle(path)}
+                onMouseEnter={() => setHovered(path)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                {label}
+              </Link>
+            ))}
             <span style={styles.disabled}>Airdrop (soon)</span>
           </nav>
         )}
@@ -113,13 +146,6 @@ const styles: Record<string, React.CSSProperties> = {
     flexDirection: 'column',
     gap: '0.5rem',
     marginTop: '1rem',
-  },
-  link: {
-    color: '#fff',
-    textDecoration: 'none',
-    fontWeight: 500,
-    fontSize: '1rem',
-    whiteSpace: 'nowrap',
   },
   disabled: {
     color: '#888',
